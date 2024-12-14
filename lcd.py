@@ -1,6 +1,7 @@
 from gpiozero import OutputDevice
 from time import sleep
 
+
 # Define GPIO to LCD mapping using OutputDevice
 LCD_RS = OutputDevice(26)  # Pin 25 for RS
 LCD_E = OutputDevice(19)  # Pin 24 for Enable
@@ -20,6 +21,7 @@ LCD_LINE_2 = 0xC0  # LCD RAM address for the 2nd line
 E_PULSE = 0.0005
 E_DELAY = 0.0005
 
+
 def lcd_init():
     """Initialize the LCD display."""
     lcd_byte(0x33, LCD_CMD)  # Initialize
@@ -29,6 +31,7 @@ def lcd_init():
     lcd_byte(0x06, LCD_CMD)  # Shift cursor right
     lcd_byte(0x01, LCD_CMD)  # Clear display
     sleep(E_DELAY)
+
 
 def lcd_byte(bits, mode):
     """Send byte to data pins."""
@@ -71,6 +74,7 @@ def lcd_byte(bits, mode):
     # Toggle 'Enable' pin
     lcd_toggle_enable()
 
+
 def lcd_toggle_enable():
     """Toggle enable pin."""
     sleep(E_DELAY)
@@ -78,6 +82,7 @@ def lcd_toggle_enable():
     sleep(E_PULSE)
     LCD_E.off()
     sleep(E_DELAY)
+
 
 def lcd_string(message, line):
     """Send string to display."""
@@ -87,11 +92,3 @@ def lcd_string(message, line):
 
     for i in range(LCD_WIDTH):
         lcd_byte(ord(message[i]), LCD_CHR)
-
-# Main program loop
-if __name__ == '__main__':
-    lcd_init()
-    while True:
-        lcd_string("Hello world!", LCD_LINE_1)
-        lcd_string("This is a test.", LCD_LINE_2)
-        sleep(3)
