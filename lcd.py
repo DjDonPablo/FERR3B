@@ -43,7 +43,7 @@ def lcd_byte(bits, mode):
     LCD_D5.off()
     LCD_D6.off()
     LCD_D7.off()
-    
+
     if bits & 0x10:
         LCD_D4.on()
     if bits & 0x20:
@@ -61,7 +61,7 @@ def lcd_byte(bits, mode):
     LCD_D5.off()
     LCD_D6.off()
     LCD_D7.off()
-    
+
     if bits & 0x01:
         LCD_D4.on()
     if bits & 0x02:
