@@ -29,3 +29,17 @@ On computer :
 ```
 nc <raspberry_ip> 5000 | ffplay -i -
 ```
+### Model
+
+The model is a basic CNN, as defined in `model.py`. We kept it light because of the hardware limitations.
+
+We achieve **~0.61 accuracy** (`train_model.ipynb`) with the CE loss on the test set, SOTA being at **~0.75**. 
+
+## How to run
+
+```console
+foo@bar:~$ python -m venv env
+foo@bar:~$ source env/bin/activate
+foo@bar:~$ pip install -r requirements.txt
+foo@bar:~$ python main.py
+```
